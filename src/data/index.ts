@@ -1,4 +1,4 @@
-import {IDataModel} from "@/models/dataModel";
+import {IDataModel} from "@/models";
 
 export const data: IDataModel[] = [
   {

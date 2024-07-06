@@ -1,11 +1,11 @@
 'use client'
-import { type ChangeEvent, useState } from 'react';
-import { useRouter } from 'next/navigation'
+import {type ChangeEvent, useState} from 'react';
+import {useRouter} from 'next/navigation'
+import Link from "next/link";
 
-import { ILoginData } from "@/models/loginModel";
+import {ILoginData} from "@/models";
 import AuthService from "@/services/AuthService";
 
-import Link from "next/link";
 import Container from "@mui/material/Container";
 import {Button, Checkbox, FormControlLabel, InputAdornment, TextField} from "@mui/material";
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
@@ -38,42 +38,42 @@ export const LoginForm = () => {
   }
 
   return (<>
-    <Container maxWidth="xl">
-      <form onSubmit={handleAuth} noValidate>
-        <Stack direction="column" gap={2}>
-          <Typography variant="h4" component="h1" gutterBottom>Вход в сервис</Typography>
-          <TextField
-            label='Логин'
-            type='text'
-            name='login'
-            required
-            value={login}
-            onChange={handleLoginData}
-            autoComplete='one-time-code'
-            helperText={showError ? 'Проверьте логин' : 'Введите логин'}
-            error={showError}
-          />
-          <TextField
-            label='Пароль'
-            type={`${showPassword ? 'text' : 'password'}`}
-            name='password'
-            required
-            value={password}
-            onChange={handleLoginData}
-            autoComplete='one-time-code'
-            helperText={showError ? 'Проверьте пароль' : 'Введите пароль'}
-            InputProps={{
-              endAdornment: <InputAdornment position="end"><IconButton
-                onClick={handleShowPassword}><VisibilityOffOutlinedIcon/></IconButton></InputAdornment>,
-            }}
-            error={showError}
-          />
-          <FormControlLabel control={<Checkbox/>} label='Запомнить меня'/>
-          <Button type='submit' variant="contained">Войти</Button>
-          <Link href='/recovery' className="recovery-link">Забыли пароль?</Link>
-        </Stack>
-      </form>
-    </Container>
+      <Container maxWidth="xl">
+        <form onSubmit={handleAuth} noValidate>
+          <Stack direction="column" gap={2}>
+            <Typography variant="h4" component="h1" gutterBottom>Вход в сервис</Typography>
+            <TextField
+              label='Логин'
+              type='text'
+              name='login'
+              required
+              value={login}
+              onChange={handleLoginData}
+              autoComplete='one-time-code'
+              helperText={showError ? 'Проверьте логин' : 'Введите логин'}
+              error={showError}
+            />
+            <TextField
+              label='Пароль'
+              type={`${showPassword ? 'text' : 'password'}`}
+              name='password'
+              required
+              value={password}
+              onChange={handleLoginData}
+              autoComplete='one-time-code'
+              helperText={showError ? 'Проверьте пароль' : 'Введите пароль'}
+              InputProps={{
+                endAdornment: <InputAdornment position="end"><IconButton
+                  onClick={handleShowPassword}><VisibilityOffOutlinedIcon/></IconButton></InputAdornment>,
+              }}
+              error={showError}
+            />
+            <FormControlLabel control={<Checkbox/>} label='Запомнить меня'/>
+            <Button type='submit' variant="contained">Войти</Button>
+            <Link href='/recovery' className="recovery-link">Забыли пароль?</Link>
+          </Stack>
+        </form>
+      </Container>
     </>
   )
 }

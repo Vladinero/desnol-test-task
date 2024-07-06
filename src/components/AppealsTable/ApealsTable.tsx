@@ -1,16 +1,21 @@
 'use client';
 import {useState} from "react";
-
 import Link from "next/link";
+
+import {IDataModel} from "@/models";
+
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-import {IDataModel} from "@/models/dataModel";
+import Badge from "@mui/material/Badge";
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import {Stack} from "@mui/system";
+
 import {TablePagination} from "@/components/TablePagination";
 
 interface IAppealsTableProps {
   data: IDataModel[]
 }
 
-export const AppealsTable = ({data=[]}: IAppealsTableProps) => {
+export const AppealsTable = ({data = []}: IAppealsTableProps) => {
   const ITEMS_PER_PAGE = 3;
   const [page, setPage] = useState(1);
   const startIndex = (page - 1) * ITEMS_PER_PAGE;
@@ -28,7 +33,7 @@ export const AppealsTable = ({data=[]}: IAppealsTableProps) => {
         <Table sx={{minWidth: 650}} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Тема</TableCell>
+              <TableCell colSpan={4}>Тема</TableCell>
               <TableCell align="right">Номер</TableCell>
               <TableCell align="right">Дата создания</TableCell>
               <TableCell align="right">Дата изменения</TableCell>
@@ -42,14 +47,26 @@ export const AppealsTable = ({data=[]}: IAppealsTableProps) => {
                 key={row.id}
                 sx={{'&:last-child td, &:last-child th': {border: 0}}}
               >
-                <TableCell component="th" scope="row">
-                  <Link href={`/appeals/${row.id}`}>{row.theme}</Link>
+                <TableCell colSpan={4} component="th" scope="row">
+
+                  <Link href={`/appeals/${row.id}`}>
+                    <Stack direction="row" gap={1}>
+                      {row.theme}
+                      {row.isWaitingForAnswer === 'Да' ?
+                        <ReportProblemIcon color='error' fontSize='small'/> :
+                        null
+                      }
+                    </Stack>
+                  </Link>
                 </TableCell>
                 <TableCell align="right">{row.number}</TableCell>
                 <TableCell align="right">{row.createdAt}</TableCell>
                 <TableCell align="right">{row.modifiedAt}</TableCell>
                 <TableCell align="right">{row.deadline}</TableCell>
-                <TableCell align="right">{row.status}</TableCell>
+                <TableCell align="right">
+                  <Badge color="secondary" variant="dot" sx={{marginRight: 1}}/>
+                  {row.status}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

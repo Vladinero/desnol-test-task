@@ -1,8 +1,9 @@
+import {ChangeEvent, useState} from "react";
+
 import {InputAdornment, TextField} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import {ChangeEvent, useState} from "react";
 
 export const Search = () => {
   const [search, setSearch] = useState<string>('');
@@ -16,7 +17,6 @@ export const Search = () => {
 
   const onSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(search);
   }
   return (
     <form onSubmit={onSubmit}>

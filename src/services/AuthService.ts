@@ -1,4 +1,4 @@
-import { ILoginData } from "@/models/loginModel";
+import { ILoginData } from "@/models";
 
 export default class AuthService {
   static logins: string[] = ['gavrilov', 'fedorov'];

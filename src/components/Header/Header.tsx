@@ -15,7 +15,7 @@ import {Stack} from "@mui/system";
 import AddIcon from '@mui/icons-material/Add';
 import Badge from '@mui/material/Badge';
 
-export default function Header({isAuth}: {isAuth: boolean}) {
+export default function Header({isAuth}: { isAuth: boolean }) {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,7 +28,7 @@ export default function Header({isAuth}: {isAuth: boolean}) {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters >
+        <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
@@ -48,49 +48,50 @@ export default function Header({isAuth}: {isAuth: boolean}) {
           </Typography>
 
           {isAuth && <>
-          <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon/>
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: {xs: 'block', md: 'none' },
-              }}
-            >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center" sx={{display: 'flex', alignItems:  'center', gap: 2}}>
-                  Уведомления
-                  <Badge badgeContent={12} color="error"/>
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Обращения</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Добавить обращение</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
+						<Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+							<IconButton
+								size="large"
+								aria-label="account of current user"
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								onClick={handleOpenNavMenu}
+								color="inherit"
+							>
+								<MenuIcon/>
+							</IconButton>
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorElNav}
+								anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+								keepMounted
+								transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+								open={Boolean(anchorElNav)}
+								onClose={handleCloseNavMenu}
+								sx={{
+                  display: {xs: 'block', md: 'none'},
+                }}
+							>
+								<MenuItem onClick={handleCloseNavMenu}>
+									<Typography textAlign="center" sx={{display: 'flex', alignItems: 'center', gap: 2}}>
+										Уведомления
+										<Badge badgeContent={12} color="error"/>
+									</Typography>
+								</MenuItem>
+								<MenuItem onClick={handleCloseNavMenu}>
+									<Typography textAlign="center">Обращения</Typography>
+								</MenuItem>
+								<MenuItem onClick={handleCloseNavMenu}>
+									<Typography textAlign="center">Добавить обращение</Typography>
+								</MenuItem>
+							</Menu>
+						</Box>
+					</>}
           <Typography
             variant="h6"
             noWrap
@@ -109,40 +110,38 @@ export default function Header({isAuth}: {isAuth: boolean}) {
           >
             itilium
           </Typography>
-          <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex', justifyContent: 'center', gap: 10}}}>
-            <Box>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{my: 2, color: 'white', display: 'flex', gap: 2}}
-              >
-                Уведомления
-                <Badge badgeContent={12} color="error"/>
-              </Button>
-            </Box>
-            <Box sx={{borderBottom: `4px solid`, borderBottomColor: 'secondary.main'}}>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{my: 2, color: 'white', display: 'block'}}
-              >
-                Обращения
-              </Button>
-            </Box>
-          </Box>
-          <Stack direction="row" spacing={2}>
-            <Button
-              variant="contained"
-              color="secondary"
-              startIcon={<AddIcon />}
-              sx={{my: 2, color: 'white', display: {xs: 'none', md: 'flex'}, gap: 1}}
-            >
-              Новое обращение
-            </Button>
-            <Avatar
-              alt="Gavrilov avatar"
-              src="/static/images/avatar/2.jpg"
-            />
-          </Stack>
-          </>
+          {isAuth && <>
+						<Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex', justifyContent: 'center', gap: 10}}}>
+							<Box>
+								<Button
+									onClick={handleCloseNavMenu}
+									sx={{my: 2, color: 'white', display: 'flex', gap: 2}}
+								>
+									Уведомления
+									<Badge badgeContent={12} color="error"/>
+								</Button>
+							</Box>
+							<Box sx={{borderBottom: `4px solid`, borderBottomColor: 'secondary.main'}}>
+								<Button
+									onClick={handleCloseNavMenu}
+									sx={{my: 2, color: 'white', display: 'block'}}
+								>
+									Обращения
+								</Button>
+							</Box>
+						</Box>
+						<Stack direction="row" spacing={2}>
+							<Button
+								variant="contained"
+								color="secondary"
+								startIcon={<AddIcon/>}
+								sx={{my: 2, color: 'white', display: {xs: 'none', md: 'flex'}, gap: 1}}
+							>
+								Новое обращение
+							</Button>
+							<Avatar>A</Avatar>
+						</Stack>
+					</>
           }
         </Toolbar>
       </Container>
