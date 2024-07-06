@@ -1,4 +1,4 @@
-import {ILoginData} from "@/models/loginModel";
+import { ILoginData } from "@/models/loginModel";
 
 export default class AuthService {
   static logins: string[] = ['gavrilov', 'fedorov'];
@@ -10,7 +10,6 @@ export default class AuthService {
 
     if (isValidUserData) {
       this.isAuth = true
-      window.sessionStorage.setItem('auth', 'true')
     }
   }
 

@@ -1,8 +1,8 @@
 'use client'
-import {type ChangeEvent, useState} from 'react';
-import {useRouter} from 'next/navigation'
+import { type ChangeEvent, useState } from 'react';
+import { useRouter } from 'next/navigation'
 
-import {ILoginData} from "@/models/loginModel";
+import { ILoginData } from "@/models/loginModel";
 import AuthService from "@/services/AuthService";
 
 import Link from "next/link";
@@ -37,7 +37,7 @@ export const LoginForm = () => {
     }
   }
 
-  return (
+  return (<>
     <Container maxWidth="xl">
       <form onSubmit={handleAuth} noValidate>
         <Stack direction="column" gap={2}>
@@ -74,5 +74,6 @@ export const LoginForm = () => {
         </Stack>
       </form>
     </Container>
+    </>
   )
 }
