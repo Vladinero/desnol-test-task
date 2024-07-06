@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 
 export default function Appeals() {
 
-
   return (
     <>
       <Header isAuth={true}/>
