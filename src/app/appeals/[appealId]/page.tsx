@@ -1,10 +1,11 @@
+import ProtectedRoute from "@/hocs/ProtectedRoute";
+
 import Header from "@/components/Header/Header";
 import Container from "@mui/material/Container";
 import DetailCard from "@/components/DetailCard/DetailCard";
 import {data} from '@/data'
 import {Stack} from "@mui/system";
 import {Alert} from "@mui/material";
-import type {Metadata} from "next";
 import {AppealFilter} from "@/components/AppealsFilter";
 
 interface IAppealProps {
@@ -12,14 +13,6 @@ interface IAppealProps {
     appealId: string
   }
 }
-
-export const generateMetadata = ({params}: IAppealProps): Metadata => {
-  const {appealId} = params
- return {
-   title: `itilium | Страница детальной информации о заявке ${appealId}`,
-   description: "Детальная информация о заявке",
- }
-};
 
 export default function Appeal({params}: IAppealProps) {
   const {appealId} = params
@@ -30,19 +23,19 @@ export default function Appeal({params}: IAppealProps) {
     })
 
   return (
-    <>
+    <ProtectedRoute>
       <Header isAuth={true}/>
       <Container maxWidth="xl" sx={{pt: 2}}>
-        <AppealFilter isDetailPage />
+        <AppealFilter isDetailPage/>
         {appealDetails ?
           <Stack direction="column" spacing={2}>
             <DetailCard info={appealDetails}/>
-            <Alert severity="info" sx={{ maxWidth: {sx: '100%', md: '50%'}}}>
+            <Alert severity="info" sx={{maxWidth: {sx: '100%', md: '50%'}}}>
               Если остались вопросы, пожалуйста. создайте новое обращение.</Alert>
           </Stack> :
           null
         }
       </Container>
-    </>
+    </ProtectedRoute>
   )
 }

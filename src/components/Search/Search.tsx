@@ -28,7 +28,7 @@ export const Search = () => {
         value={search}
         onChange={handleSearch}
         autoComplete="one-time-code"
-        sx={{borderRadius: '50%', mb: 2, width: '100%'}}
+        sx={{borderRadius: '50%', width: '100%'}}
         InputProps={{
           startAdornment: <InputAdornment position="start">
             <IconButton

@@ -10,7 +10,7 @@ interface IAppealFilterProps {
   isDetailPage?: boolean
 }
 
-export const AppealFilter = ({isDetailPage=false}: IAppealFilterProps) => {
+export const AppealFilter = ({isDetailPage = false}: IAppealFilterProps) => {
   const filters = ['Все', 'Открытые', 'Закрытые', 'Ожидают ответа'];
   const router = useRouter();
 
@@ -31,6 +31,8 @@ export const AppealFilter = ({isDetailPage=false}: IAppealFilterProps) => {
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: {xs: 'column', md: 'row'},
+        gap: 2,
+        mb: 2
       }}>
       {isDetailPage ?
         <Button
@@ -42,7 +44,18 @@ export const AppealFilter = ({isDetailPage=false}: IAppealFilterProps) => {
         </Button>
         : <Search/>
       }
-      <Stack direction="row" gap={2} sx={{display: 'flex', flexWrap: 'wrap', marginTop: 2}}>
+      <Stack
+        direction="row"
+        gap={2}
+        sx={
+          {
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            ustifyContent: {xs: 'center', md: 'space-between'}
+          }
+        }
+      >
         {filters.map(f => {
           return (
             <Button

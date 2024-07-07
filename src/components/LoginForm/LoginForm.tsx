@@ -1,10 +1,9 @@
 'use client'
 import {type ChangeEvent, useState} from 'react';
-import {useRouter} from 'next/navigation'
 import Link from "next/link";
 
 import {ILoginData} from "@/models";
-import AuthService from "@/services/AuthService";
+import {useAuth} from "@/hooks";
 
 import Container from "@mui/material/Container";
 import {Button, Checkbox, FormControlLabel, InputAdornment, TextField} from "@mui/material";
@@ -16,9 +15,7 @@ import IconButton from "@mui/material/IconButton";
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loginData, setLoginData] = useState<ILoginData>({login: '', password: ''});
-  const [showError, setShowError] = useState<boolean>(false);
-  const {login, password} = loginData;
-  const router = useRouter();
+  const {authError, login} = useAuth()
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword)
@@ -29,12 +26,7 @@ export const LoginForm = () => {
   };
   const handleAuth = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    AuthService.login(loginData);
-    if (AuthService.checkAuth()) {
-      router.push('/appeals');
-    } else {
-      setShowError(true)
-    }
+    login(loginData)
   }
 
   return (<>
@@ -47,26 +39,26 @@ export const LoginForm = () => {
               type='text'
               name='login'
               required
-              value={login}
+              value={loginData.login}
               onChange={handleLoginData}
               autoComplete='one-time-code'
-              helperText={showError ? 'Проверьте логин' : 'Введите логин'}
-              error={showError}
+              helperText={authError ? 'Проверьте логин' : 'Введите логин'}
+              error={authError}
             />
             <TextField
               label='Пароль'
               type={`${showPassword ? 'text' : 'password'}`}
               name='password'
               required
-              value={password}
+              value={loginData.password}
               onChange={handleLoginData}
               autoComplete='one-time-code'
-              helperText={showError ? 'Проверьте пароль' : 'Введите пароль'}
+              helperText={authError ? 'Проверьте пароль' : 'Введите пароль'}
               InputProps={{
                 endAdornment: <InputAdornment position="end"><IconButton
                   onClick={handleShowPassword}><VisibilityOffOutlinedIcon/></IconButton></InputAdornment>,
               }}
-              error={showError}
+              error={authError}
             />
             <FormControlLabel control={<Checkbox/>} label='Запомнить меня'/>
             <Button type='submit' variant="contained">Войти</Button>
