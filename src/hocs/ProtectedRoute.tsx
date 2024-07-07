@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     if (!isAuth) {
       router.push('/');
     }
-  }, [isAuth]);
+  }, [isAuth, router]);
 
   return <>{children}</>;
 };

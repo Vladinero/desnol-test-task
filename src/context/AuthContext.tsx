@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import {ILoginData} from "@/models";
 import {useCookies} from "react-cookie"
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (loggedInUser) {
       setIsAuth(true);
     }
-  }, []);
+  }, [cookies.isAuth]);
 
   const login = ({login, password}: ILoginData) => {
     const isValidUserData =
