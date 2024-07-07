@@ -52,7 +52,7 @@ export const AppealFilter = ({isDetailPage = false}: IAppealFilterProps) => {
             display: 'flex',
             alignItems: 'center',
             flexWrap: 'wrap',
-            ustifyContent: {xs: 'center', md: 'space-between'}
+            justifyContent: {xs: 'center', md: 'space-between'}
           }
         }
       >
